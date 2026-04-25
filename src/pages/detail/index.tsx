@@ -20,6 +20,8 @@ export default function DetailPage() {
   const toggleFavorite = useUserStore((s) => s.toggleFavorite)
 
   useEffect(() => {
+    let cancelled = false
+
     const cached = getCache<RecipeDetailType>(`recipe_${recipeId}`)
     if (cached) {
       setDetail(cached)
@@ -28,14 +30,22 @@ export default function DetailPage() {
 
     getRecipeDetail(recipeId)
       .then((data) => {
-        setDetail(data)
-        setCache(`recipe_${recipeId}`, data, TTL.RECIPE_DETAIL)
-        setLoading(false)
+        if (!cancelled) {
+          setDetail(data)
+          setCache(`recipe_${recipeId}`, data, TTL.RECIPE_DETAIL)
+          setLoading(false)
+        }
       })
       .catch(() => {
-        setLoading(false)
-        Taro.showToast({ title: '加载失败', icon: 'error' })
+        if (!cancelled) {
+          setLoading(false)
+          Taro.showToast({ title: '加载失败', icon: 'error' })
+        }
       })
+
+    return () => {
+      cancelled = true
+    }
   }, [recipeId])
 
   const handleCook = () => {

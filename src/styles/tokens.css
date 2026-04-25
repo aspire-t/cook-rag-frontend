@@ -1,4 +1,4 @@
-page {
+page, body, #app {
   /* 主色 */
   --color-primary: #FF6B35;
   --color-primary-light: #FF8F65;

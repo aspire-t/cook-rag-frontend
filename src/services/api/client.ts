@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const BASE_URL = process.env.TARO_APP_API_URL || 'http://localhost:8000'
+const BASE_URL = '' // 走 devServer proxy 或同域部署
 
 interface ApiResponse<T = any> {
   code: number

@@ -16,6 +16,7 @@ export default function CookPage() {
   const currentStep = useCookStore((s) => s.currentStep)
   const timerRemaining = useCookStore((s) => s.timerRemaining)
   const timerRunning = useCookStore((s) => s.timerRunning)
+  const steps = useCookStore((s) => s.steps)
   const connect = useCookStore((s) => s.connect)
   const disconnect = useCookStore((s) => s.disconnect)
   const nextStep = useCookStore((s) => s.nextStep)
@@ -48,15 +49,22 @@ export default function CookPage() {
 
       {/* 步骤内容 */}
       <View className='cook-page__step'>
-        <Image
-          className='cook-page__step-image'
-          src='/assets/default-step.png'
-          mode='aspectFit'
-        />
+        {steps[currentStep - 1]?.image ? (
+          <Image
+            className='cook-page__step-image'
+            src={steps[currentStep - 1].image}
+            mode='aspectFit'
+          />
+        ) : (
+          <Image
+            className='cook-page__step-image'
+            src='/assets/default-step.png'
+            mode='aspectFit'
+          />
+        )}
         <Text className='cook-page__step-title'>步骤 {currentStep}</Text>
-        {/* 这里可以从菜谱详情传入步骤描述 */}
         <Text className='cook-page__step-desc'>
-          {currentStep} / {totalSteps}
+          {steps[currentStep - 1]?.description || '暂无步骤描述'}
         </Text>
       </View>
 

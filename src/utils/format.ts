@@ -1,7 +1,7 @@
 /** 格式化时间（秒 → MM:SS） */
 export function formatTime(seconds: number): string {
   const mins = Math.floor(seconds / 60)
-  const secs = seconds % 60
+  const secs = Math.floor(seconds % 60)
   return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
 }
 
@@ -14,11 +14,12 @@ export function formatNumber(n: number): string {
 }
 
 /** 格式化难度显示 */
-export function formatDifficulty(d?: string): string {
+export function formatDifficulty(d: string | undefined): string {
   const map: Record<string, string> = {
     easy: '简单',
     medium: '中等',
     hard: '困难',
   }
-  return map[d || ''] || d || ''
+  if (!d) return ''
+  return map[d] || d
 }

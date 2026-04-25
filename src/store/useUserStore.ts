@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { create } from 'zustand'
 import { addFavorite, removeFavorite, getFavorites } from '@/services/api/favorite'
 
@@ -21,16 +22,18 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   toggleFavorite: async (id) => {
-    // 乐观更新
-    const prevFavorites = new Set(get().favorites)
-    const isFav = prevFavorites.has(id)
+    // 保存原始状态用于回滚
+    const originalFavorites = new Set(get().favorites)
+    const isFav = originalFavorites.has(id)
 
+    // 乐观更新
+    const newFavorites = new Set(originalFavorites)
     if (isFav) {
-      prevFavorites.delete(id)
+      newFavorites.delete(id)
     } else {
-      prevFavorites.add(id)
+      newFavorites.add(id)
     }
-    set({ favorites: prevFavorites })
+    set({ favorites: newFavorites })
 
     try {
       if (isFav) {
@@ -39,8 +42,8 @@ export const useUserStore = create<UserState>((set, get) => ({
         await addFavorite(id)
       }
     } catch {
-      // 回滚
-      set({ favorites: new Set(get().favorites.has(id) ? get().favorites : prevFavorites) })
+      // 回滚到原始状态
+      set({ favorites: originalFavorites })
       Taro.showToast({ title: '操作失败', icon: 'error' })
     }
   },

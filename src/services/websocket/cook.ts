@@ -1,5 +1,11 @@
 import Taro from '@tarojs/taro'
 
+declare const process: {
+  env: {
+    TARO_ENV: 'weapp' | 'h5' | string
+  }
+}
+
 export type CookAction =
   | 'start'
   | 'next'
@@ -29,7 +35,8 @@ export interface CookCallbacks {
 }
 
 class CookConnection {
-  private socketTask: Taro.SocketTask | null = null
+  private ws: WebSocket | null = null
+  private socketTask: any = null
   private reconnectAttempts = 0
   private maxReconnectAttempts = 3
   private callbacks: CookCallbacks | null = null
@@ -37,8 +44,7 @@ class CookConnection {
   private baseUrl: string
 
   constructor() {
-    const envUrl = process.env.TARO_APP_WS_URL
-    this.baseUrl = envUrl || 'ws://localhost:8000'
+    this.baseUrl = (typeof process !== 'undefined' && process.env.WEBSOCKET_URL) || ''
   }
 
   /** 建立连接并开始跟做 */
@@ -52,36 +58,67 @@ class CookConnection {
   private openConnection(): void {
     if (!this.recipeId) return
 
-    this.socketTask = Taro.connectSocket({
-      url: `${this.baseUrl}/ws/recipes/${this.recipeId}/cook`,
-      success: () => {
+    const url = `${this.baseUrl}/ws/recipes/${this.recipeId}/cook`
+
+    if (process.env.TARO_ENV === 'h5') {
+      // H5 环境使用原生 WebSocket
+      this.ws = new WebSocket(url)
+
+      this.ws.onopen = () => {
+        this.reconnectAttempts = 0
         this.callbacks?.onConnected?.()
-      },
-    })
-
-    this.socketTask.onOpen(() => {
-      this.reconnectAttempts = 0
-      // 发送 start 指令
-      this.send({ action: 'start' })
-    })
-
-    this.socketTask.onMessage((res) => {
-      try {
-        const msg: CookMessage = JSON.parse(res.data)
-        this.handleMessage(msg)
-      } catch {
-        // 非 JSON 消息，忽略
+        this.send({ action: 'start' })
       }
-    })
 
-    this.socketTask.onClose(() => {
-      this.callbacks?.onDisconnected?.()
-      this.tryReconnect()
-    })
+      this.ws.onmessage = (event) => {
+        try {
+          const msg: CookMessage = JSON.parse(event.data)
+          this.handleMessage(msg)
+        } catch {
+          // 非 JSON 消息，忽略
+        }
+      }
 
-    this.socketTask.onError(() => {
-      this.tryReconnect()
-    })
+      this.ws.onclose = () => {
+        this.callbacks?.onDisconnected?.()
+        this.tryReconnect()
+      }
+
+      this.ws.onerror = () => {
+        // onError 不触发重连，仅记录
+      }
+    } else {
+      // 小程序环境使用 Taro.connectSocket
+      this.socketTask = Taro.connectSocket({
+        url,
+        success: () => {
+          this.callbacks?.onConnected?.()
+        },
+      })
+
+      this.socketTask?.onOpen?.(() => {
+        this.reconnectAttempts = 0
+        this.send({ action: 'start' })
+      })
+
+      this.socketTask?.onMessage?.((res: any) => {
+        try {
+          const msg: CookMessage = JSON.parse(res.data)
+          this.handleMessage(msg)
+        } catch {
+          // 非 JSON 消息，忽略
+        }
+      })
+
+      this.socketTask?.onClose?.(() => {
+        this.callbacks?.onDisconnected?.()
+        this.tryReconnect()
+      })
+
+      this.socketTask?.onError?.(() => {
+        // onError 不触发重连，仅记录
+      })
+    }
   }
 
   private handleMessage(msg: CookMessage): void {
@@ -109,20 +146,22 @@ class CookConnection {
 
   /** 发送指令 */
   send(data: Record<string, any>): void {
-    if (this.socketTask) {
-      this.socketTask.send({
-        data: JSON.stringify(data),
-      })
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      this.ws.send(JSON.stringify(data))
+    } else if (this.socketTask) {
+      this.socketTask.send({ data: JSON.stringify(data) })
     }
   }
 
   /** 断开连接 */
   disconnect(): void {
-    this.reconnectAttempts = this.maxReconnectAttempts // 禁止重连
+    this.reconnectAttempts = this.maxReconnectAttempts
     if (this.recipeId) {
       this.send({ action: 'complete' })
     }
+    this.ws?.close()
     this.socketTask?.close()
+    this.ws = null
     this.socketTask = null
     this.callbacks = null
     this.recipeId = null

@@ -50,7 +50,7 @@ export default function SearchPage() {
     <View className='page-container safe-area-bottom'>
       <View className='search-page__header'>
         <Text className='search-page__back' onClick={() => Taro.navigateBack()}>←</Text>
-        <SearchBar value={searchInput} onSearch={handleSearch} showVoice={false} showImage={false} />
+        <SearchBar value={searchInput} onSearch={handleSearch} onChange={setSearchInput} showVoice={false} showImage={false} />
       </View>
       <FilterBar onFilter={handleFilter} />
 

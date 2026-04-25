@@ -1,5 +1,13 @@
+import Taro from '@tarojs/taro'
 import { create } from 'zustand'
 import { cookConnection } from '@/services/websocket/cook'
+
+/** 单条步骤内容 */
+export interface StepItem {
+  description: string
+  image?: string
+  duration?: number
+}
 
 interface CookState {
   isConnected: boolean
@@ -7,10 +15,10 @@ interface CookState {
   totalSteps: number
   timerRemaining: number
   timerRunning: boolean
-  completedSteps: Set<number>
   recipeName: string
+  steps: StepItem[]
 
-  connect: (recipeId: string, recipeName: string, totalSteps: number, stepDurations?: number[]) => void
+  connect: (recipeId: string, recipeName: string, totalSteps: number, steps?: StepItem[]) => void
   disconnect: () => void
   nextStep: () => void
   prevStep: () => void
@@ -19,6 +27,7 @@ interface CookState {
   resetTimer: () => void
   completeCook: () => void
   goToStep: (step: number) => void
+  setRecipeSteps: (steps: StepItem[]) => void
 }
 
 export const useCookStore = create<CookState>((set, get) => ({
@@ -27,18 +36,18 @@ export const useCookStore = create<CookState>((set, get) => ({
   totalSteps: 0,
   timerRemaining: 0,
   timerRunning: false,
-  completedSteps: new Set(),
   recipeName: '',
+  steps: [],
 
-  connect: (recipeId, recipeName, totalSteps, stepDurations) => {
+  connect: (recipeId, recipeName, totalSteps, steps) => {
     set({
       isConnected: true,
       currentStep: 1,
       totalSteps,
-      timerRemaining: stepDurations?.[0] || 0,
+      timerRemaining: steps?.[0]?.duration || 0,
       timerRunning: false,
-      completedSteps: new Set(),
       recipeName,
+      steps: steps || [],
     })
 
     cookConnection.connect(recipeId, {

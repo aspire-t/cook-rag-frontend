@@ -54,10 +54,23 @@ export interface SearchFilters {
   sort?: string
 }
 
+/** 搜索结果中的单条数据（API 原始返回） */
+export interface SearchResultItem {
+  recipe_id: string
+  name?: string
+  description?: string
+  cuisine?: string
+  difficulty?: string
+  prep_time?: number
+  cook_time?: number
+  cover_image?: string
+  score?: number
+}
+
 /** 搜索结果 */
 export interface SearchResult {
   query: string
-  results: RecipeCardData[]
+  results: SearchResultItem[]
   total: number
   source: string
   duration_ms?: number

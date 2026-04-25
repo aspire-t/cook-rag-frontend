@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Taro from '@tarojs/taro'
 import { View, Input, Text } from '@tarojs/components'
 import './index.css'
@@ -6,6 +6,7 @@ import './index.css'
 interface Props {
   value: string
   onSearch: (value: string) => void
+  onChange?: (value: string) => void
   placeholder?: string
   showVoice?: boolean
   showImage?: boolean
@@ -16,37 +17,40 @@ interface Props {
 export default function SearchBar({
   value,
   onSearch,
+  onChange,
   placeholder = '搜索菜谱...',
   showVoice = true,
   showImage = true,
   onVoiceSearch,
   onImageSearch,
 }: Props) {
-  const [inputValue, setInputValue] = useState(value)
-
   const handleConfirm = () => {
-    if (inputValue.trim()) {
-      onSearch(inputValue.trim())
+    if (value.trim()) {
+      onSearch(value.trim())
     }
+  }
+
+  const handleInput = (e: any) => {
+    onChange?.(e.detail.value)
   }
 
   return (
     <View className='search-bar'>
       <Input
         className='search-bar__input'
-        value={inputValue}
+        value={value}
         placeholder={placeholder}
         placeholderClass='search-bar__placeholder'
         confirmType='search'
-        onInput={(e) => setInputValue(e.detail.value)}
+        onInput={handleInput}
         onConfirm={handleConfirm}
       />
       <View className='search-bar__actions'>
         {showVoice && (
-          <Text className='search-bar__icon' onClick={onVoiceSearch}>🎤</Text>
+          <Text className='search-bar__icon' onClick={() => onVoiceSearch?.()}>🎤</Text>
         )}
         {showImage && (
-          <Text className='search-bar__icon' onClick={onImageSearch}>📷</Text>
+          <Text className='search-bar__icon' onClick={() => onImageSearch?.()}>📷</Text>
         )}
       </View>
     </View>
