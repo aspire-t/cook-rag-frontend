@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"grep -rn \\\"BASE_URL\\\\|baseURL\\\\|baseUrl\\\\|WEBSOCKET_URL\\\" src/services/api/ src/config/ 2>/dev/null\",\"description\":\"Find API URL configuration\"}",
-  "error": "Exit code 2\nsrc/services/api/client.ts:3:const BASE_URL = '' // 走 devServer proxy 或同域部署\nsrc/services/api/client.ts:19:    url: `${BASE_URL}${url}`,",
-  "timestamp": "2026-04-25T06:46:57.224Z",
-  "retry_count": 1
-}
