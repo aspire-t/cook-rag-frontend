@@ -1,0 +1,35 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-bg-overlay);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-md);
+}
+
+.timer__display {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--spacing-sm);
+}
+
+.timer__controls {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.timer__btn {
+  font-size: var(--font-size-xl);
+  padding: var(--spacing-sm);
+}
+
+.timer__btn--primary {
+  color: var(--color-primary);
+}
+
+.timer__btn--secondary {
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,36 @@
+.ingredient-list {
+  padding: var(--spacing-md);
+  background: var(--color-bg-card);
+  margin-bottom: var(--spacing-md);
+}
+
+.ingredient-list__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.ingredient-list__item {
+  display: flex;
+  align-items: baseline;
+  padding: var(--spacing-xs) 0;
+}
+
+.ingredient-list__dot {
+  color: var(--color-primary);
+  margin-right: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+}
+
+.ingredient-list__name {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  flex: 1;
+}
+
+.ingredient-list__amount {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}

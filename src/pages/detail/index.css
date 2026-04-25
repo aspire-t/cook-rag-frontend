@@ -1,0 +1,82 @@
+.detail-page__cover {
+  width: 100%;
+  height: 40vh;
+  background: var(--color-bg-overlay);
+}
+
+.detail-page__back {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  font-size: var(--font-size-xl);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-full);
+  z-index: 10;
+}
+
+.detail-page__info {
+  padding: var(--spacing-md);
+  background: var(--color-bg-card);
+  margin-bottom: var(--spacing-md);
+}
+
+.detail-page__name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-page__meta {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.detail-page__tag {
+  font-size: var(--font-size-sm);
+  padding: 2px var(--spacing-xs);
+  background: var(--color-bg-overlay);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+}
+
+.detail-page__tag--difficulty {
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--color-primary);
+}
+
+.detail-page__stats {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.detail-page__stat {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.detail-page__loading,
+.detail-page__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--color-text-secondary);
+}
+
+.detail-page__cook-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  z-index: 100;
+}
