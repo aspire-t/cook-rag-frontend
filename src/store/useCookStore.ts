@@ -113,4 +113,8 @@ export const useCookStore = create<CookState>((set, get) => ({
   goToStep: (step) => {
     set({ currentStep: step })
   },
+
+  setRecipeSteps: (steps) => {
+    set({ steps })
+  },
 }))

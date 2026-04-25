@@ -17,3 +17,26 @@ vi.mock('@tarojs/taro', () => ({
   default: mockTaro,
   ...mockTaro,
 }))
+
+// Mock @tarojs/components for component tests
+vi.mock('@tarojs/components', () => {
+  const createMockComponent = (tag: string) => {
+    const Component = ({ children, ...props }: any) => {
+      const { className, style, onClick, ...rest } = props
+      return {
+        type: tag,
+        props: { className, style, onClick, ...rest },
+        children,
+      }
+    }
+    return Component
+  }
+
+  return {
+    View: createMockComponent('view'),
+    Text: createMockComponent('text'),
+    Input: createMockComponent('input'),
+    Image: createMockComponent('image'),
+    ScrollView: createMockComponent('scroll-view'),
+  }
+})

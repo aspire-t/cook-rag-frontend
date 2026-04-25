@@ -3,6 +3,7 @@ import Taro, { useRouter } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import IngredientList from '@/components/IngredientList'
 import StepList from '@/components/StepList'
+import { useCookStore } from '@/store/useCookStore'
 import { getRecipeDetail } from '@/services/api/recipe'
 import { getCache, setCache, TTL } from '@/utils/cache'
 import { useUserStore } from '@/store/useUserStore'
@@ -18,6 +19,7 @@ export default function DetailPage() {
   const [loading, setLoading] = useState(true)
   const isFavorite = useUserStore((s) => s.favorites.has(recipeId))
   const toggleFavorite = useUserStore((s) => s.toggleFavorite)
+  const setRecipeSteps = useCookStore((s) => s.setRecipeSteps)
 
   useEffect(() => {
     let cancelled = false
@@ -50,6 +52,13 @@ export default function DetailPage() {
 
   const handleCook = () => {
     if (detail) {
+      // 先将步骤数据传入 cook store
+      const steps = detail.steps.map((s) => ({
+        description: s.description,
+        duration: s.duration_seconds,
+      }))
+      setRecipeSteps(steps)
+
       Taro.navigateTo({
         url: `/pages/cook/index?id=${recipeId}&name=${encodeURIComponent(detail.name)}&steps=${detail.steps.length}`,
       })
