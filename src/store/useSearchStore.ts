@@ -7,7 +7,7 @@ import type { RecipeCardData, SearchFilters, SearchResultItem } from '@/types'
 /** 生成确定性的缓存 key（排序 filters 的 key 保证顺序一致） */
 function makeCacheKey(query: string, filters?: SearchFilters): string {
   if (!filters) return `search_${query}_`
-  const sorted = Object.keys(filters).sort().map((k) => `${k}:${filters![k]}`).join(',')
+  const sorted = Object.keys(filters).sort().map((k) => `${k}:${(filters as Record<string, unknown>)[k]}`).join(',')
   return `search_${query}_${sorted}`
 }
 

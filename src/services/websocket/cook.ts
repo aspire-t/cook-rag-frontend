@@ -44,7 +44,7 @@ class CookConnection {
   private baseUrl: string
 
   constructor() {
-    this.baseUrl = (typeof process !== 'undefined' && process.env.WEBSOCKET_URL) || ''
+    this.baseUrl = (typeof process !== 'undefined' && (process.env as Record<string, string>).WEBSOCKET_URL) || ''
   }
 
   /** 建立连接并开始跟做 */

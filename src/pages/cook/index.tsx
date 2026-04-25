@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Taro, { useRouter } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import CookingNav from '@/components/CookingNav'
 import Timer from '@/components/Timer'
 import { useCookStore } from '@/store/useCookStore'
-import { formatTime } from '@/utils/format'
 import './index.css'
 
 export default function CookPage() {
   const router = useRouter()
-  const recipeId = router.params.id || ''
-  const recipeName = decodeURIComponent(router.params.name || '')
-  const totalSteps = parseInt(router.params.steps || '0', 10)
+  const recipeId = (router.params.id || '') as string
+  const recipeName = decodeURIComponent((router.params.name || '') as string)
+  const totalSteps = parseInt((router.params.steps || '0') as string, 10)
 
   const currentStep = useCookStore((s) => s.currentStep)
   const timerRemaining = useCookStore((s) => s.timerRemaining)

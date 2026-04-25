@@ -70,8 +70,8 @@ describe('API client', () => {
 
   it('handles 401 response', async () => {
     vi.mocked(Taro.request).mockResolvedValue({ data: {}, statusCode: 401 } as any)
-    vi.mocked(Taro.removeStorageSync).mockImplementation(() => {})
-    vi.mocked(Taro.showToast).mockImplementation(() => {})
+    vi.mocked(Taro.removeStorageSync).mockImplementation(() => ({}))
+    vi.mocked(Taro.showToast).mockImplementation(() => Promise.resolve())
 
     await expect(request('/test')).rejects.toThrow('UNAUTHORIZED')
     expect(Taro.removeStorageSync).toHaveBeenCalledWith('token')

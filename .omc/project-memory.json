@@ -1,0 +1,430 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777095367770,
+  "projectRoot": "/Users/wangzhentao/code/cook-rag-frontend",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "18.3.0",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18.3.0",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {
+      "dev:h5": "taro build --type h5 --watch",
+      "dev:weapp": "taro build --type weapp --watch",
+      "build:h5": "taro build --type h5",
+      "build:weapp": "taro build --type weapp"
+    }
+  },
+  "conventions": {
+    "namingStyle": "camelCase",
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "src"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 3,
+      "lastAccessed": 1777095367717,
+      "keyFiles": [
+        "dev.ts",
+        "index.ts",
+        "prod.ts"
+      ]
+    },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 0,
+      "lastAccessed": 1777095367719,
+      "keyFiles": []
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 4,
+      "lastAccessed": 1777095367720,
+      "keyFiles": [
+        "app.config.ts",
+        "app.tsx",
+        "index.html"
+      ]
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 0,
+      "lastAccessed": 1777095367755,
+      "keyFiles": []
+    },
+    "src/pages": {
+      "path": "src/pages",
+      "purpose": "Page components",
+      "fileCount": 0,
+      "lastAccessed": 1777095367755,
+      "keyFiles": []
+    },
+    "src/services": {
+      "path": "src/services",
+      "purpose": "Business logic services",
+      "fileCount": 1,
+      "lastAccessed": 1777095367756,
+      "keyFiles": []
+    },
+    "src/types": {
+      "path": "src/types",
+      "purpose": "Type definitions",
+      "fileCount": 1,
+      "lastAccessed": 1777095367757,
+      "keyFiles": [
+        "index.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/pages/detail/index.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1777097022989,
+      "type": "file"
+    },
+    {
+      "path": "src/services/websocket/cook.ts",
+      "accessCount": 8,
+      "lastAccessed": 1777100106206,
+      "type": "file"
+    },
+    {
+      "path": "src/store/useSearchStore.ts",
+      "accessCount": 7,
+      "lastAccessed": 1777096947107,
+      "type": "file"
+    },
+    {
+      "path": "src/store/useCookStore.ts",
+      "accessCount": 7,
+      "lastAccessed": 1777096992952,
+      "type": "file"
+    },
+    {
+      "path": "tasks.json",
+      "accessCount": 7,
+      "lastAccessed": 1777097550380,
+      "type": "file"
+    },
+    {
+      "path": "src/services/api/search.ts",
+      "accessCount": 6,
+      "lastAccessed": 1777096934869,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 4,
+      "lastAccessed": 1777096587284,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/cook/index.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1777096871995,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 4,
+      "lastAccessed": 1777096927464,
+      "type": "file"
+    },
+    {
+      "path": "src/utils/format.ts",
+      "accessCount": 4,
+      "lastAccessed": 1777096962062,
+      "type": "file"
+    },
+    {
+      "path": "src/services/api/client.ts",
+      "accessCount": 4,
+      "lastAccessed": 1777100101368,
+      "type": "file"
+    },
+    {
+      "path": "src/store/useUserStore.ts",
+      "accessCount": 3,
+      "lastAccessed": 1777096630444,
+      "type": "file"
+    },
+    {
+      "path": "src/components/SearchBar/index.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1777096650455,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/search/index.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1777096667892,
+      "type": "file"
+    },
+    {
+      "path": "src/types/index.ts",
+      "accessCount": 3,
+      "lastAccessed": 1777096908784,
+      "type": "file"
+    },
+    {
+      "path": "vitest.config.ts",
+      "accessCount": 3,
+      "lastAccessed": 1777097360427,
+      "type": "file"
+    },
+    {
+      "path": "progress.txt",
+      "accessCount": 3,
+      "lastAccessed": 1777097592620,
+      "type": "file"
+    },
+    {
+      "path": "config/index.ts",
+      "accessCount": 3,
+      "lastAccessed": 1777099631042,
+      "type": "file"
+    },
+    {
+      "path": "src/app.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1777095911284,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/home/index.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1777096657047,
+      "type": "file"
+    },
+    {
+      "path": "src/components/CookingNav/index.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1777096953537,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Timer/index.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1777096953673,
+      "type": "file"
+    },
+    {
+      "path": "src/utils/cache.ts",
+      "accessCount": 2,
+      "lastAccessed": 1777097370889,
+      "type": "file"
+    },
+    {
+      "path": "src/__tests__/setup.ts",
+      "accessCount": 2,
+      "lastAccessed": 1777097462032,
+      "type": "file"
+    },
+    {
+      "path": "src/app.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095911186,
+      "type": "file"
+    },
+    {
+      "path": "src/services/api/favorite.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777095911394,
+      "type": "file"
+    },
+    {
+      "path": "src/services/api/recipe.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777095911452,
+      "type": "file"
+    },
+    {
+      "path": "config/dev.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777095913173,
+      "type": "file"
+    },
+    {
+      "path": "config/prod.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777095913361,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/home/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095938327,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/search/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095938944,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/detail/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095939138,
+      "type": "file"
+    },
+    {
+      "path": "src/components/RecipeCard/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095939222,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/cook/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095939412,
+      "type": "file"
+    },
+    {
+      "path": "src/components/RecipeCard/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095939519,
+      "type": "file"
+    },
+    {
+      "path": "src/components/SearchBar/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095941153,
+      "type": "file"
+    },
+    {
+      "path": "src/components/FilterBar/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095941587,
+      "type": "file"
+    },
+    {
+      "path": "src/components/CookingNav/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095941634,
+      "type": "file"
+    },
+    {
+      "path": "src/components/FilterBar/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095941688,
+      "type": "file"
+    },
+    {
+      "path": "src/components/IngredientList/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095941716,
+      "type": "file"
+    },
+    {
+      "path": "src/components/IngredientList/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095941743,
+      "type": "file"
+    },
+    {
+      "path": "src/components/StepList/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095942120,
+      "type": "file"
+    },
+    {
+      "path": "src/components/StepList/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095942286,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Timer/index.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095943301,
+      "type": "file"
+    },
+    {
+      "path": "src/components/Toast/index.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1777095943369,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/common.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095943504,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/tokens.css",
+      "accessCount": 1,
+      "lastAccessed": 1777095943522,
+      "type": "file"
+    },
+    {
+      "path": "babel.config.js",
+      "accessCount": 1,
+      "lastAccessed": 1777095949485,
+      "type": "file"
+    },
+    {
+      "path": "project.config.json",
+      "accessCount": 1,
+      "lastAccessed": 1777095949729,
+      "type": "file"
+    },
+    {
+      "path": "src/__tests__/utils/format.test.ts",
+      "accessCount": 1,
+      "lastAccessed": 1777097175949,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
